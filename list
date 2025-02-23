@@ -1,0 +1,27 @@
+!DOCTYPE <html>
+    <DOCTYPE html>
+        <html>    
+        <head>
+        <title>lists</title>
+        </head>
+        <body>
+            <ul type="circle">
+        <h3>unoredered lists </h3>        
+      <li>newyork</li>
+      <li>newjersey</li>
+      <li>Los angels</li>
+</ul>
+<ol type="I">
+<h3>order lists</h3>
+<li>strwberry</li>
+<li>pineapple</li>
+<li>Custard apple</li>
+</ol>
+<di>
+  <dl>
+    <dt>Coffe</dt>
+    <dd>hot bervage </dd>
+    </dl>
+    <body>
+     </html>   
+    </body>
