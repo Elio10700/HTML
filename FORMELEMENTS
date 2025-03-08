@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>
+            personal details
+        </title>
+    </head>
+</html>
+<h2><I personal details</h1>
+<form>
+    <fieldset>
+    <legend>personal information</legend>
+    <label>name</label>
+    <input> type = text> <br><br>
+    <label>last name</label>
+    <label>Email</label><br><br>
+    <label>password</label><input> <br><br>
+    
+    <input type="radio"name="gender">male
+    <input type="radio"name="gender">female
+    <br><br>
+    <label>contry</label><br><br>
+    <input type=checkbox = name="city">Nigeria <br><br>
+    <input type=checkbox = name="city">America <br><br>
+    <input type= checkbox = name="city">london <br><br> 
+    <input type= checkbox = name="city">canada <br><br>
+    <input type= checkbox = name="city">India <br><br> 
+    <br><input type="date"<br>
+    <input type="submit"></fieldset>
+    
+</form></fieldset>
