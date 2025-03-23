@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>
+            advance selectors
+        </title>
+        <style> 
+        advanced selectors
+         </style>
+      <style>  
+        input[type=text]{
+            border:1px solid blue
+        }
+        </style>
+    </head>
+    <body>
+    <h1>avance selectors</h1>
+    Name <input type="text">
+    <ul>
+        <h2>space expolroer</h2>
+        <li>mars rover</li>
+        <li>satelliete</li>
+        <li>blackhole</li>
+    </ul>
+    <h3>selectors</h3>
+    <p>attriubute selectors-is used to select the attribute prperty</p>
+    <p>child selector - is for immeditate children</p>
+    <a href="#">psudoclasses</a>
+</html>
+
+ 
+
+     
