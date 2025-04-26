@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Using Factor</title>
+</head>
+<body>
+    <h1>Multiplication Using Factor</h1>
+    <form id="multiplicationForm">
+        <label for="number">Enter a number:</label>
+        <input type="number" id="number" required>
+        <br>
+        <label for="factor">Enter a factor:</label>
+        <input type="number" id="factor" required>
+        <br>
+        <button type="button" onclick="performMultiplication()">Multiply</button>
+    </form>
+    <h2>Result: <span id="result">0</span></h2>
+
+    <script>
+        function performMultiplication() {
+            const number = parseFloat(document.getElementById('number').value);
+            const factor = parseFloat(document.getElementById('factor').value);
+            if (!isNaN(number) && !isNaN(factor)) {
+                const result = number * factor;
+                document.getElementById('result').textContent = result;
+            } else {
+                alert('Please enter valid numbers.');
+            }
+        }
+    </script>
+</body>
+</html>
