@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Built-in Math Object</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .result {
+            background-color: pink;
+            width: 400px;
+            height: 100px;
+            text-align: center;
+            padding: 30px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Built-in Math Object</h1>
+    <p>The Math object allows you to perform mathematical tasks.</p>
+
+    <div class="result" id="result1"></div>
+    <div class="result" id="result2"></div>
+    <div class="result" id="result3"></div>
+    <div class="result" id="result4"></div>
+
+    <script>
+    var a = Math.abs(-20);
+    document.getElementById("result1").innerHTML = "The absolute value of -20 is: " + a;
+
+    var s = Math.asin(1);
+    document.getElementById("result2").innerHTML = "The arcsine value of 1 is: " + s.toFixed(2);
+
+    var c = Math.acos(-1);
+    document.getElementById("result3").innerHTML = "The arccosine value of -1 is: " + c.toFixed(2);
+
+    var t = Math.atan(-1);
+    document.getElementById("result4").innerHTML = "The arctangent value of -1 is: " + t.toFixed(2);
+    </script>
+</body>
+</html>

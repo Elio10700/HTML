@@ -1,0 +1,24 @@
+<html>
+<head>
+    <style>
+        div{
+            font-size :20px;
+            margin:10px;
+            border: 3px dashed orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Objects in HTML</h1>
+    <div id = "result"></div>
+
+    <script>
+        var student = {
+            "name":"Eldad",
+            "age":14
+        };
+
+        document.getElementById("result").innerHTML = "Name :"+student.name + "<br> age :"+student.age;
+    </script>
+</body>
+</html>

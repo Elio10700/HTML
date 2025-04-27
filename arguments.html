@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Max Example</title>
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <h1>arguments</h1>
+    <div id="content">
+    </div>
+<script>
+    function findmax() {
+        var max = 0;
+
+        for (var i = 0; i < arguments.length; i++) {
+            if (arguments[i] > max) {
+                max = arguments[i];
+            }
+        }
+
+        return max;
+    }
+
+    document.getElementById("content").innerHTML = 
+        "The maximum number is " + findmax(12, 34, 1, 45, 26, 74, 764, 123, 675, 34, 5);
+</script>
+</body>
+</html>
+
