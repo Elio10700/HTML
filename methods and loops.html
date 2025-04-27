@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Random Numbers</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, sans-serif; /* Improve font readability */
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate Random numbers</h1>
+    <button onclick="generate()">Click to generate random</button>
+    <p id="myid"></p>
+    <script>
+        function generate() {
+            var i = 0;
+            var s = "";
+            var temp = 0;
+            while (i < 10) { // Fixed condition to generate exactly 10 numbers
+                temp = Math.round(Math.random() * 100);
+                s = s + temp + "<br>";
+                i++;
+            }
+            document.getElementById("myid").innerHTML = s;
+        }
+    </script>
+</body>
+</html>
