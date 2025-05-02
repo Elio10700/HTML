@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum of Arguments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 300px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        input.error {
+            border: 2px solid red;
+        }
+        input.success {
+            border: 2px solid green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sum of Arguments</h1>
+    <p>Enter numbers separated by commas:</p>
+    <input type="text" id="numbersInput" placeholder="e.g., 1,2,3,4,5">
+    <button onclick="calculateSum()">Calculate Sum</button>
+    <p id="result"></p>
+    <script>
+        function sum(...args) {
+            return args.reduce((acc, curr) => acc + curr, 0);
+        }
+
+        function calculateSum() {
+            const inputElement = document.getElementById('numbersInput');
+            const resultElement = document.getElementById('result');
+            let input = inputElement.value.trim(); // Trim extra spaces
+            inputElement.value = input; // Update input field with trimmed value
+            resultElement.classList.remove('error', 'success');
+            inputElement.classList.remove('error', 'success');
+            resultElement.textContent = ''; // Clear previous result
+
+            if (!input) {
+                resultElement.textContent = 'Please enter some numbers.';
+                resultElement.classList.add('error');
+                inputElement.classList.add('error');
+                return;
+            }
+
+            const numbers = input.split(',').map(num => {
+                const parsed = parseFloat(num.trim());
+                return isNaN(parsed) ? null : parsed;
+            });
+
+            if (numbers.includes(null)) {
+                resultElement.textContent = 'Invalid input. Please enter only numbers separated by commas.';
+                resultElement.classList.add('error');
+                inputElement.classList.add('error');
+                return;
+            }
+
+            const result = sum(...numbers);
+            resultElement.textContent = `The sum is: ${result}`;
+            resultElement.classList.add('success');
+            inputElement.classList.add('success');
+        }
+        HTMLScriptElement .prototype.addEventListener = function(type, listener, options) {
+            if (type === 'click') {
+                this.onclick = listener;
+            } else {
+                this.addEventListener(type, listener, options);
+            }
+        };
+        HTMLScriptElement .prototype.removeEventListener = function(type, listener, options) {
+            if (type === 'click') {
+                this.onclick = null;
+            } else {
+                this.removeEventListener(type, listener, options);
+            }
+        };
+    </script>
+</body>
+</html>
