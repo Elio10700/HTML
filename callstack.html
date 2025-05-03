@@ -1,0 +1,18 @@
+<!DOCTYPE html> 
+ <html>
+    <head>
+        <title>CALL stack</title>
+    </head>
+    <h1>call stack</h1>
+    <div id = "demo"></div>
+    <script>
+        function add(a,b){
+            return a+b;
+        }
+        function avg(a,b){
+            return add(a,b)/2;
+        }
+        var result = avg(10,34);
+        document.getElementById("demo").innerHTML = "The average of 10 and 34 = "+result;
+    </script>
+</html>
