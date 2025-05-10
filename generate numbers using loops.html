@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Numbers Using Loops</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .disp {
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Numbers from 1 to 10</h1>
+    <div class="disp">
+        <div id="res"></div>
+    </div>
+    <script>
+        var i = 1;
+        var num = "";
+        while (i < 11) {
+            num = num + i + "<br>";
+            i++;
+        }
+        document.getElementById('res').innerHTML = num;
+    </script>
+</body>
+</html>

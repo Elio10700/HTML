@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Types</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #f0f8ff, #d6eaff); /* Gradient background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .disp {
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #ffffff; /* White background for content */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .disp div {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e6f7ff; /* Light cyan for inner divs */
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            text-align: center;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Declaring Different Data Types in JavaScript</h1>
+    <p>This page demonstrates the use of various data types in JavaScript.</p>
+    <div class="disp">
+        <div id="res1"></div>
+            <div id="res2"></div>
+            <div id="res3"></div>
+            <div id="res4"></div>
+        </div>
+    </div>
+    <script>
+        var a = 10;
+        var b = 12;
+        var c = 'javascript';
+        var d = null;
+        var e;
+        document.getElementById('res1').innerHTML = "The type of a is " + typeof(a);
+        document.getElementById('res2').innerHTML = "The a and b are equal? " + (a == b);
+        document.getElementById('res3').innerHTML = "The type of c is " + typeof(c);
+        document.getElementById('res4').innerHTML = "The value of d is " + d + " and the type of e is " + typeof(e);
+    </script>
+</body>
+</html>
