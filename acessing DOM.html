@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accessing DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc, #00ffcc);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: #fff;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            outline: none;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        input:focus {
+            box-shadow: 0 0 15px #00ffcc;
+            border-color: #00ffcc;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #00ffcc;
+            color: #333;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        button:hover {
+            background-color: #00cc99;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #00ffcc;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #ffeb3b;
+            animation: fadeIn 1s ease-in-out, fadeOut 5s ease-in-out 3s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Accessing DOM Example</h1>
+    <label for="nameInput">Enter your name:</label>
+    <input type="text" id="nameInput" placeholder="Type your name here..." />
+    <button id="submitButton">Submit</button>
+    <button id="resetButton">Reset</button>
+    <p id="output"></p>
+
+    <script>
+        // Accessing DOM elements
+        const nameInput = document.getElementById('nameInput');
+        const submitButton = document.getElementById('submitButton');
+        const resetButton = document.getElementById('resetButton');
+        const output = document.getElementById('output');
+
+        // Function to get a dynamic greeting based on the time of day
+        function getGreeting() {
+            const hour = new Date().getHours();
+            if (hour < 12) return 'Good morning';
+            if (hour < 18) return 'Good afternoon';
+            return 'Good evening';
+        }
+
+        // Adding event listener to the submit button
+        submitButton.addEventListener('click', () => {
+            const name = nameInput.value.trim(); // Accessing and trimming the value of the input
+            if (name) {
+                const greeting = getGreeting();
+                output.textContent = `${greeting}, ${name}!`; // Updating the paragraph text
+                output.style.animation = 'fadeIn 1s ease-in-out, fadeOut 5s ease-in-out 3s forwards';
+            } else {
+                output.textContent = 'Please enter your name!';
+                output.style.animation = 'fadeIn 1s ease-in-out';
+            }
+        });
+
+        // Adding event listener to the reset button
+        resetButton.addEventListener('click', () => {
+            nameInput.value = ''; // Clearing the input field
+            output.textContent = ''; // Clearing the output text
+            output.style.animation = ''; // Resetting animations
+        });
+    </script>
+</body>
+</html>
