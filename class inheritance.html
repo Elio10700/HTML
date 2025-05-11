@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Class Inheritance Example</title>
+        
+    </head>
+    <body>
+        <h1>class in JavaScript</h1>
+        <div id="result"></div>
+        <div id="result1"></div>
+        <script>
+            class Car {
+                constructor(brand) {
+                    this.brand = brand;
+                }
+
+                printBrand() {
+                    return `The car brand is: ${this.brand}`;
+                }
+            }
+
+            class Model extends Car {
+                constructor(brand, mod) {
+                    super(brand);
+                    this.mod = mod;
+                }
+                printModel() {
+                    return `The car model is: ${this.mod}`;
+                }
+            }
+            const toyota = new Model("Toyota", "Camry,2026");
+            document.getElementById("result").innerText = toyota.printBrand();
+            document.getElementById("result1").innerText = toyota.printModel();
+        </script>
+    </body>
+</html>

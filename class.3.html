@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting</title>
+</head>
+<body>
+    <h1>Class in JavaScript</h1>
+    <div id="res"></div>
+    <div id="res1"></div>
+    <script>
+        class Greeting {
+            wish() {
+                return "Wishing you a great day!";
+            }
+
+            static hello() {
+                return "Hello world!!";
+            }
+        }
+
+        const w1 = new Greeting();
+        document.getElementById("res").innerText = w1.wish();
+        document.getElementById("res1").innerText = Greeting.hello();
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Class Example</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.8;
+                margin: 20px;
+                background-color: #eef2f3;
+                color: #222;
+            }
+            h1 {
+                color: #555;
+                text-align: center;
+            }
+            p {
+                font-size: 1.2em;
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Class in JavaScript</h1>
+        <script>
+            class Person {
+                constructor(name, year) {
+                    this.name = name;
+                    this.year = year;
+                }
+
+                calculateAge() {
+                    const currentYear = new Date().getFullYear();
+                    const age = currentYear - this.year;
+                    document.body.innerHTML += `<p>My name is <strong>${this.name}</strong></p>`;
+                    document.body.innerHTML += `<p>My age is <strong>${age}</strong></p>`;
+                }
+            }
+
+            const person1 = new Person("John", 2011);
+            person1.calculateAge();
+        </script>
+    </body>
+</html>
