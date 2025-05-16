@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Print Random Numbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: white;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        button {
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #f0f0f0;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+    </style>
+    <script>
+        function printRandomNumbers() {
+            const randomNumber = Math.floor(Math.random() * 100) + 1; // Generates a random number between 1 and 100
+            document.getElementById('output').innerText = `Random Number: ${randomNumber}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Random Number Generator</h1>
+    <button onclick="printRandomNumbers()">Generate Random Number</button>
+    <p id="output"></p>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Print Random Numbers</title>
+    <script>
+        function printRandomNumbers() {
+            const randomNumber = Math.floor(Math.random() * 100) + 1; // Generates a random number between 1 and 100
+            document.getElementById('output').innerText = `Random Number: ${randomNumber}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Random Number Generator</h1>
+    <button onclick="printRandomNumbers()">Generate Random Number</button>
+    <p id="output"></p>
+</body>
+</html>
