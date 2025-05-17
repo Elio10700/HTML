@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Sorting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #f7f7f7 60%, #e0e7ff 100%);
+            margin: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            letter-spacing: 1px;
+        }
+        button {
+            margin: 10px 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 6px rgba(76,175,80,0.08);
+            outline: none;
+        }
+        button:hover, button:focus {
+            background: #388e3c;
+            box-shadow: 0 4px 12px rgba(56,142,60,0.12);
+        }
+        #res {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #222;
+            background: #fff;
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            min-width: 220px;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+    <h1>Array sorting</h1>
+    <button onclick="asc()">Ascending order</button>
+    <button onclick="desc()">Descending order</button>
+    <div id="res"></div>
+    <script>
+        var points = [23, 12, 45, 44, 35, 87, 11];
+        document.getElementById("res").innerHTML = points.join(", ");
+
+        function asc() {
+            points.sort(function(a, b) { return a - b; });
+            document.getElementById("res").innerHTML = points.join(", ");
+        }
+
+        function desc() {
+            points.sort(function(a, b) { return b - a; });
+            document.getElementById("res").innerHTML = points.join(", ");
+        }
+    </script>
+</body>
+</html>
