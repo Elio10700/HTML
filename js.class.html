@@ -1,44 +1,128 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Class Example</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                line-height: 1.8;
-                margin: 20px;
-                background-color: #eef2f3;
-                color: #222;
+<head>
+    <title>JavaScript Class Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 14px 36px;
+            font-size: 20px;
+            background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(255,126,95,0.10);
+            font-weight: 600;
+            letter-spacing: 1px;
+            outline: none;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #feb47b 0%, #ff7e5f 100%);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 24px rgba(255,126,95,0.18);
+        }
+        button:active {
+            background: #ff7e5f;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(255,126,95,0.15);
+            transform: scale(0.98);
+        }
+        #output {
+            margin-top: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            background: rgba(255,255,255,0.7);
+            padding: 16px 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            min-width: 320px;
+            border: 1.5px solid #ff7e5f;
+        }
+        footer {
+            margin-top: 50px;
+            color: #555;
+            font-size: 15px;
+            opacity: 0.8;
+            background: none;
+            box-shadow: none;
+        }
+        footer span {
+            font-size: 12px;
+        }
+        /* Remove .explanation from card effect */
+        body > h1, body > button, body > #output {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            background: rgba(255,255,255,0.85);
+            margin-bottom: 18px;
+        }
+        /* Add a soft fade-in animation */
+        body > h1, body > button, body > #output, footer {
+            animation: fadeIn 1.2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 600px) {
+            #output {
+                min-width: 180px;
+                font-size: 15px;
+                padding: 10px 8px;
             }
             h1 {
-                color: #555;
-                text-align: center;
+                font-size: 22px;
             }
-            p {
-                font-size: 1.2em;
-                margin: 10px 0;
+            button {
+                font-size: 15px;
+                padding: 10px 16px;
             }
-        </style>
-    </head>
-    <body>
-        <h1>Class in JavaScript</h1>
-        <script>
-            class Person {
-                constructor(name, year) {
-                    this.name = name;
-                    this.year = year;
-                }
+        }
+        /* Add a soft drop shadow to the whole page for depth */
+        html {
+            box-shadow: 0 0 40px 0 rgba(0,0,0,0.10);
+        }
+    </style>
+    <script>
+        // Define a simple Person class
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            greet() {
+                return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+            }
+        }
 
-                calculateAge() {
-                    const currentYear = new Date().getFullYear();
-                    const age = currentYear - this.year;
-                    document.body.innerHTML += `<p>My name is <strong>${this.name}</strong></p>`;
-                    document.body.innerHTML += `<p>My age is <strong>${age}</strong></p>`;
-                }
-            }
-
-            const person1 = new Person("John", 2011);
-            person1.calculateAge();
-        </script>
-    </body>
+        function showGreeting() {
+            const person = new Person('Alice', 25);
+            document.getElementById('output').innerText = person.greet();
+        }
+    </script>
+</head>
+<body>
+    <h1>JavaScript Class Demo</h1>
+    <button onclick="showGreeting()">Show Greeting</button>
+    <p id="output"></p>
+    <footer>
+        &copy; 2025 JavaScript Class Example &mdash; Designed for learning.<br>
+        <span>Try editing the class or adding more features!</span>
+    </footer>
+</body>
 </html>
