@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>async and await</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
+            color: #222;
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        h2 {
+            color: #1e293b;
+            font-size: 2.3em;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-shadow: 0 2px 8px #e0e7ff;
+        }
+        #result {
+            font-size: 1.2em;
+            color: #2563eb;
+            margin-bottom: 24px;
+        }
+        .output {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+            padding: 28px 36px;
+            margin-top: 24px;
+            font-size: 1.18em;
+            min-height: 48px;
+            border: 1px solid #e0e7ff;
+            transition: box-shadow 0.2s, border 0.2s;
+        }
+        .output:hover {
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.16);
+            border: 1.5px solid #6366f1;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+            .output {
+                padding: 16px 8px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>javascript async / await</h2>
+    <h1 id="result"></h1>
+    <div class="output" id="output"></div>
+    <script>
+        // Output will be shown in the .output div instead of document.write
+        function log(msg) {
+            document.getElementById('output').innerHTML += msg + "<br>";
+        }
+
+        log(1 + 2);
+        log(2);
+
+    async function add(a, b) {
+        let response = await a + b
+        display(response);
+    }
+
+    function display(some) {
+        log(some);
+    }
+
+    add(5, 20);
+    log(3);
+    log(4);
+    </script>
+</body>
+</html>

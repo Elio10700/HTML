@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2>javascript</h2>
+        <p id="demo"></p>
+        <script>
+        function mydisplay(some) {
+            document.getElementById("demo").innerHTML = some;
+        }
+        function add(a, b) {
+            var sum = a + b;
+            mydisplay(sum);
+        }
+        let promise = new Promise(function(resolve, reject) {
+            let x = 12;
+            if (x == 0) {
+               resolve("ok");
+            } else {
+                reject("error");
+            }
+        });
+        promise.then(
+            function(value) { add(5, 5); },
+            function(error) { mydisplay(error); }
+        );
+        </script>
+    </body>
+</html>
+          

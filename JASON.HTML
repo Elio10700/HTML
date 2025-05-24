@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            jason object
+        </title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: #f8fafc;
+                color: #222;
+                margin: 0;
+                padding: 40px;
+            }
+            h1 {
+                font-size: 2.2em;
+                font-weight: 600;
+                color: #2a4365;
+                margin-bottom: 24px;
+                letter-spacing: 1px;
+            }
+            #res, #res1 {
+                background: #fff;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+                padding: 20px 28px;
+                margin-bottom: 18px;
+                font-size: 1.15em;
+                transition: box-shadow 0.2s;
+            }
+            #res:hover, #res1:hover {
+                box-shadow: 0 4px 16px rgba(44, 62, 80, 0.13);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Student Info</h1>
+        <div id="res"></div> 
+        <div id="res1"></div>    
+        <script>
+            const student = {
+                name: "eliot",
+                age: 14,
+            };
+            document.getElementById("res").innerHTML = student.name + "<br>"+student.age;
+            var myJason = JSON.stringify(student);
+            var newStudent = JSON.parse(myJason);
+            document.getElementById("res1").innerHTML = newStudent.name + "<br>" + newStudent.age;
+            
+        </script>
+    </body>
+</html>

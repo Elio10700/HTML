@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            callback
+        </title>
+    </head>
+    <body>
+        <div id="res"></div>
+        <script>
+            function display(value) {
+                document.getElementById("res").innerHTML= + value;
+            }
+            function add (a,b,mydisplay) {
+               var c = a + b;
+               mydisplay(c);
+            }
+            add(239,45,display);
+        </script>
+    </body>
+</html>
