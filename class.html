@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <form name="form1" onsubmit="return formvalidation()">
+           <input type="text" name="name1" >
+           <input type="submit">
+        </form>
+        <div id="res"></div>
+        <script>
+            function formvalidation() {
+                var x = document.forms["form1"]["name1"].value;
+                var msg = "";
+                if (x == "") {
+                    msg = "Name must be filled out";
+                } else {
+                    msg = "input fine";
+                }
+                document.getElementById("res").innerText = msg;
+                return false;
+            }
+        </script>

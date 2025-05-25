@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+             Validation api
+        </title>
+        <style>
+            body {
+                background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+                min-height: 100vh;
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
+            input, button {
+                padding: 8px 12px;
+                margin: 10px 0;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                font-size: 16px;
+            }
+            button {
+                background: #4f8cff;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+            button:hover {
+                background: #2563eb;
+            }
+            #res {
+                margin-top: 15px;
+                font-weight: bold;
+                color: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <input id="num" type="number" min="20" max="100" required>
+        <button onclick="check()">Validate</button>
+        <div id="res"></div>
+        <script>
+            function check(){
+                var x = document.getElementById("num");
+                if (!x.checkValidity()) {
+                    document.getElementById("res").innerHTML = "Error occurred"+x.validationMessage;
+                } else {
+                    document.getElementById("res").innerHTML = "input requirement is correct";
+                }
+            }
+        </script>
+    </body>
+</html>
