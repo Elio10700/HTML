@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Validate Inputs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f6d365 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px) saturate(120%);
+            border: 1px solid rgba(209, 213, 219, 0.3);
+            box-shadow: 0 8px 32px rgba(31, 41, 55, 0.15);
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            max-width: 350px;
+            width: 100%;
+            animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(243,244,246,0.7);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        input[type="number"]:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 0 2px #a5b4fc;
+        }
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+        button {
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+        
+        button[type="reset"] {
+            background: #e5e7eb;
+            color: #111827;
+            border: 1px solid #d1d5db;
+        }
+        button[type="reset"]:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        button:active {
+            background: #1e40af;
+        }
+        #errorMsg {
+            color: #dc2626;
+            font-size: 0.95rem;
+            min-height: 1.2em;
+            margin-top: 0.2rem;
+            transition: color 0.2s, opacity 0.3s;
+            opacity: 0; /* Initially hide the tooltip */
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 1rem;
+            }
+        }
+        /* Add focus style for accessibility */
+        input[type="number"]:focus-visible, button:focus-visible {
+            outline: 2px solid #6366f1;
+            outline-offset: 2px;
+        }
+        .input-error {
+            border-color: #dc2626 !important;
+            box-shadow: 0 0 0 2px #fecaca !important;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        #errorMsg.shake {
+            animation: shake 0.25s linear;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0);}
+            20% { transform: translateX(-6px);}
+            40% { transform: translateX(6px);}
+            60% { transform: translateX(-4px);}
+            80% { transform: translateX(4px);}
+            100% { transform: translateX(0);}
+        }
+
+        .success-animation {
+            animation: successPulse 0.5s ease-out;
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    <script>
+        function validateInput(value) {
+            if (value.trim() === "" || isNaN(value) || Number(value) < 0) {
+                return "Please enter a non-negative number.";
+            }
+            return "";
+        }
+
+        function validateForm() {
+            const inputElem = document.getElementById('numberInput');
+            const errorElem = document.getElementById('errorMsg');
+            const input = inputElem.value;
+            const error = validateInput(input);
+            
+            if (error) {
+                errorElem.textContent = error;
+                inputElem.setAttribute('aria-invalid', 'true');
+                inputElem.classList.add('input-error');
+                errorElem.classList.add('shake');
+                inputElem.focus();
+                return false;
+            }
+            
+            // Success feedback
+            inputElem.removeAttribute('aria-invalid');
+            inputElem.classList.remove('input-error');
+            errorElem.classList.remove('shake');
+            errorElem.style.color = "#16a34a";
+            errorElem.textContent = `Success! Setting delay to ${input}ms`;
+            inputElem.classList.add('success-animation');
+            
+            setTimeout(() => {
+                errorElem.textContent = "";
+                errorElem.style.color = "";
+                inputElem.classList.remove('success-animation');
+            }, 2000);
+            
+            return false;
+        }
+
+        function liveValidate() {
+            const inputElem = document.getElementById('numberInput');
+            const errorElem = document.getElementById('errorMsg');
+            const error = validateInput(inputElem.value);
+            errorElem.textContent = error;
+            if (error) {
+                inputElem.setAttribute('aria-invalid', 'true');
+                inputElem.classList.add('input-error');
+            } else {
+                inputElem.removeAttribute('aria-invalid');
+                inputElem.classList.remove('input-error');
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('numberInput').value = "";
+            document.getElementById('errorMsg').textContent = "";
+        }
+        // Add: animate error message and input border on error
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputElem = document.getElementById('numberInput');
+            const errorElem = document.getElementById('errorMsg');
+            inputElem.addEventListener('invalid', function() {
+                errorElem.classList.add('shake');
+                inputElem.classList.add('input-error');
+            });
+            errorElem.addEventListener('animationend', function() {
+                errorElem.classList.remove('shake');
+                inputElem.classList.remove('input-error');
+            });
+
+            // Enhanced tooltips
+            inputElem.addEventListener('focus', function() {
+                errorElem.style.color = "#2563eb";
+                errorElem.textContent = "💡 Enter delay in milliseconds (1000ms = 1 second)";
+            });
+            
+            inputElem.addEventListener('mouseover', function() {
+                if (!inputElem.value && !document.activeElement === inputElem) {
+                    errorElem.style.color = "#6b7280";
+                    errorElem.textContent = "Tip: Try entering a value";
+                }
+            });
+        });
+    </script>
+    <style>
+        /* Add a subtle animation to the tooltip */
+        #errorMsg {
+            /* ...existing styles... */
+            transition: color 0.2s, opacity 0.3s;
+            opacity: 0; /* Initially hide the tooltip */
+        }
+
+        #numberInput:focus + #errorMsg {
+            opacity: 1; /* Show the tooltip when the input is focused */
+        }
+    </style>
+</head>
+<body>
+    <div class="container" role="main" aria-label="Input validation form">
+        <form onsubmit="return validateForm()" onreset="clearForm()" novalidate>
+            <label for="numberInput">Delay (ms):</label>
+            <input type="number" id="numberInput" name="delay" min="0" step="1" autocomplete="off"
+                   aria-describedby="errorMsg" aria-required="true" oninput="liveValidate()" placeholder="e.g. 1000">
+            <div id="errorMsg" role="alert"></div>
+            <div class="actions">
+                <button type="submit">Submit</button>
+                <button type="reset">Clear</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
