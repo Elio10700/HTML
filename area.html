@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>arena caculator</title>
+    </head>
+    <body>
+        <h1> Area caculator</h1>
+        <script>
+            var ch = prompt("1.rectnagle\n2.triangle\n3.circle\n4.parrelogram \nenter your choice");
+            var l, b, h, r;
+            var area;
+            if (ch=="1"){
+                l = Number(promt("enter length")); 
+                 b = Number(promt("enter breadth")); 
+                area = l * b;
+                 alert("area of is " + area);
+            }
+            else if (ch=="2"){
+                b = Number(prompt("enter base"));
+                h = Number(prompt("enter height"));
+                area = (1/2) * b * h;
+                alert("area of is " + area);
+            }
+            else if (ch=="3"){
+                r = Number(prompt("enter radius"));
+                area = 3.14 * r * r;
+                 alert("area of is " + area);
+            }
+            else if (ch=="4"){
+                b = Number(prompt("enter base"));
+                h = Number(prompt("enter height"));
+                area = b * h;
+                 alert("area of is " + area);
+            }
+            else{
+                alert("invalid choice");
+            }
+        </script>
+    </body>
+</html>
