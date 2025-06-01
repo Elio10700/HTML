@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perimeter Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: #fff;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 2em 2.5em 2em 2.5em;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+            color: #444;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 0.5em;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            width: 100%;
+            padding: 0.7em;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 1em;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #result {
+            margin-top: 1.5em;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .formula {
+            margin-top: 1em;
+            font-size: 0.95em;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rectangle Perimeter Calculator</h1>
+        <div class="formula">
+            Formula: <b>Perimeter = 2 × (Length + Width)</b>
+        </div>
+        <label for="length">Length:</label>
+        <input type="number" id="length" min="0" step="any" placeholder="Enter length">
+        <label for="width">Width:</label>
+        <input type="number" id="width" min="0" step="any" placeholder="Enter width">
+        <button onclick="calculatePerimeter()">Calculate Perimeter</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        function calculatePerimeter() {
+            const lengthInput = document.getElementById('length');
+            const widthInput = document.getElementById('width');
+            const result = document.getElementById('result');
+            const length = parseFloat(lengthInput.value);
+            const width = parseFloat(widthInput.value);
+
+            // Reset input borders
+            lengthInput.style.borderColor = '#bbb';
+            widthInput.style.borderColor = '#bbb';
+
+            if (isNaN(length) || isNaN(width)) {
+                result.style.color = 'red';
+                result.textContent = "Please enter both length and width.";
+                if (isNaN(length)) lengthInput.style.borderColor = 'red';
+                if (isNaN(width)) widthInput.style.borderColor = 'red';
+                return;
+            }
+            if (length < 0 || width < 0) {
+                result.style.color = 'red';
+                result.textContent = "Values must be positive numbers.";
+                if (length < 0) lengthInput.style.borderColor = 'red';
+                if (width < 0) widthInput.style.borderColor = 'red';
+                return;
+            }
+            const perimeter = 2 * (length + width);
+            result.style.color = '#007bff';
+            result.textContent = `Perimeter: ${perimeter}`;
+        }
+    </script>
+</body>
+</html>
