@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+To Do List App
+    </title>
+    <style>
+        h1 {
+            background-color: darkcyan;
+            color:burlywood;
+            font-size:xx-large;
+            text-align: center;
+            padding: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+        }
+        body {
+            background-color: lightcyan;
+            max-width: 400px;
+            margin: 40px auto;
+            border: 2px solid rgb(22, 71, 16);
+            border-radius: 10px;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+        #myform::after {
+        border: 2px solid #ff9800; /* Example: orange border */
+        border-radius: 5px;
+        padding: 2px;
+        margin-top: 10px;
+        content: "";
+        display: block;
+        clear: both;
+        }
+    </style>
+</head>
+<body>
+    <h3>📝 Add your list to do</h3>
+    <form id="myform">
+        <input id="myinput" type="text">
+        <button type="submit">➕ add</button>
+    </form>
+    <h3>📋 to do list</h3>
+    <ul id="myitem"></ul>
+    <script>
+        var myform = document.getElementById("myform");
+        var myinput = document.getElementById("myinput");
+        var myitem = document.getElementById("myitem");
+
+        myform.addEventListener("submit", function(event) {
+            event.preventDefault();
+            var inputitems = myinput.value.trim();
+            if (inputitems !== "") {
+                var items = `<li>✅ ${inputitems} <button onclick="dele(this)">🗑️ Delete</button></li>`;
+                myitem.insertAdjacentHTML("beforeend", items);
+                myinput.value = "";
+                myinput.focus();
+            }
+        });
+
+        function dele(element) {
+            element.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
