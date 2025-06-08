@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🛒 Shopping List</title>
+    <style>
+        body {
+            background: linear-gradient(120deg, #232526 0%, #2c5364 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(30, 30, 40, 0.82);
+            border-radius: 28px;
+            box-shadow: 0 8px 40px #00ffe7cc, 0 0 0 8px rgba(0,255,231,0.10), 0 0 80px #00ffe744;
+            padding: 2.5em 2em 2em 2em;
+            min-width: 340px;
+            max-width: 95vw;
+            text-align: center;
+            backdrop-filter: blur(14px) saturate(180%);
+            border: 2px solid rgba(0,255,231,0.18);
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            color: #fff;
+            font-size: 2.1em;
+            letter-spacing: 2px;
+            margin-bottom: 1.2em;
+            text-shadow: 0 2px 24px #00ffe7, 0 0 8px #007cf0;
+            font-weight: 700;
+        }
+        .input-row {
+            display: flex;
+            gap: 0.7em;
+            justify-content: center;
+            margin-bottom: 1.5em;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 0.7em 1em;
+            border-radius: 8px;
+            border: 2px solid #00ffe7;
+            background: rgba(0,255,231,0.08);
+            color: #fff;
+            font-size: 1.1em;
+            outline: none;
+            transition: border 0.3s;
+        }
+        input[type="text"]:focus {
+            border: 2px solid #007cf0;
+        }
+        button {
+            background: linear-gradient(90deg, #00ffe7 0%, #007cf0 100%);
+            color: #232526;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7em 1.5em;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #00ffe744;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.4s;
+            outline: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.4em;
+        }
+        button:hover {
+            transform: scale(1.07);
+            box-shadow: 0 4px 24px #00ffe799;
+            background: linear-gradient(90deg, #007cf0 0%, #00ffe7 100%);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-top: 1.2em;
+        }
+        li {
+            background: rgba(0,255,231,0.09);
+            color: #fff;
+            margin-bottom: 0.7em;
+            padding: 0.8em 1.2em;
+            border-radius: 10px;
+            font-size: 1.15em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 8px #00ffe733;
+            transition: background 0.3s;
+            position: relative;
+        }
+        li .item-emoji {
+            margin-right: 0.7em;
+            font-size: 1.3em;
+        }
+        li .remove-btn {
+            background: none;
+            border: none;
+            color: #00ffe7;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-left: 1em;
+            transition: color 0.2s, transform 0.2s;
+        }
+        li .remove-btn:hover {
+            color: #ff3b3b;
+            transform: scale(1.2) rotate(-10deg);
+        }
+        /* Floating glow */
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, #00ffe7 0%, #007cf0 40%, transparent 80%);
+            opacity: 0.18;
+            filter: blur(60px);
+            transform: translate(-50%, -50%) scale(1.2);
+            z-index: 0;
+            animation: glowMove 8s infinite alternate ease-in-out;
+        }
+        @keyframes glowMove {
+            0% { transform: translate(-50%, -50%) scale(1.2);}
+            100% { transform: translate(-48%, -52%) scale(1.35);}
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 1em 0.3em;
+                min-width: 0;
+            }
+            h1 {
+                font-size: 1.1em;
+            }
+            input[type="text"] {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+    <div class="container">
+        <h1>🛒  Shopping List</h1>
+        <div class="input-row">
+            <input type="text" id="itemInput" placeholder="Add item (e.g. 🍞 Bread)">
+            <button onclick="addItem()">
+                ➕ Add
+            </button>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1em;">
+            <button onclick="clearList()" style="background:#ff3b3b;color:#fff;padding:0.5em 1.2em;border-radius:6px;font-size:1em;border:none;cursor:pointer;box-shadow:0 1px 8px #ff3b3b44;transition:background 0.2s;">🧹 Clear All</button>
+            <span id="count" style="color:#00ffe7;font-size:1.1em;">0 items</span>
+        </div>
+        <ul id="shoppingList"></ul>
+        <div style="margin-top:1.5em;">
+            <button onclick="exportList()" style="background:#007cf0;color:#fff;padding:0.5em 1.2em;border-radius:6px;font-size:1em;border:none;cursor:pointer;box-shadow:0 1px 8px #007cf044;transition:background 0.2s;">📤 Export</button>
+            <button onclick="importListPrompt()" style="background:#00ffe7;color:#232526;padding:0.5em 1.2em;border-radius:6px;font-size:1em;border:none;cursor:pointer;box-shadow:0 1px 8px #00ffe744;transition:background 0.2s;margin-left:0.5em;">📥 Import</button>
+        </div>
+    </div>
+    <script>
+        const input = document.getElementById('itemInput');
+        const list = document.getElementById('shoppingList');
+
+        function updateCount() {
+            const count = list.children.length;
+            document.getElementById('count').textContent = count + (count === 1 ? " item" : " items");
+        }
+
+        function addItem() {
+            const value = input.value.trim();
+            if (!value) return;
+            const li = document.createElement('li');
+            // Extract emoji if present at start
+            const match = value.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*(.*)$/u);
+            let emoji = "🛍️", text = value;
+            if (match) {
+                emoji = match[1];
+                text = match[2] || '';
+            }
+            li.innerHTML = `<span class="item-emoji">${emoji}</span> <span class="item-text">${text}</span>
+                <span>
+                    <button class="remove-btn" title="Remove" onclick="removeItem(this)">🗑️</button>
+                    <button class="remove-btn" title="Mark as bought" onclick="toggleBought(this)">✅</button>
+                    <button class="remove-btn" title="Edit" onclick="editItem(this)">✏️</button>
+                </span>`;
+            list.appendChild(li);
+            input.value = '';
+            input.focus();
+            updateCount();
+            saveList();
+        }
+
+        function removeItem(btn) {
+            btn.closest('li').remove();
+            updateCount();
+            saveList();
+        }
+
+        function toggleBought(btn) {
+            const li = btn.closest('li');
+            li.classList.toggle('bought');
+            saveList();
+        }
+
+        function editItem(btn) {
+            const li = btn.closest('li');
+            const textSpan = li.querySelector('.item-text');
+            const oldText = textSpan.textContent;
+            const newText = prompt("Edit item:", oldText);
+            if (newText !== null && newText.trim() !== "") {
+                textSpan.textContent = newText.trim();
+                saveList();
+            }
+        }
+
+        function clearList() {
+            if (confirm("Clear the entire shopping list?")) {
+                list.innerHTML = '';
+                updateCount();
+                saveList();
+            }
+        }
+
+        function exportList() {
+            const items = [];
+            list.querySelectorAll('li').forEach(li => {
+                const emoji = li.querySelector('.item-emoji').textContent;
+                const text = li.querySelector('.item-text').textContent;
+                const bought = li.classList.contains('bought');
+                items.push({emoji, text, bought});
+            });
+            const data = JSON.stringify(items);
+            navigator.clipboard.writeText(data).then(() => {
+                alert("List copied to clipboard!");
+            });
+        }
+
+        function importListPrompt() {
+            const data = prompt("Paste your exported shopping list data:");
+            if (!data) return;
+            try {
+                const items = JSON.parse(data);
+                if (!Array.isArray(items)) throw new Error();
+                list.innerHTML = '';
+                for (const item of items) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span class="item-emoji">${item.emoji || "🛍️"}</span> <span class="item-text">${item.text || ""}</span>
+                        <span>
+                            <button class="remove-btn" title="Remove" onclick="removeItem(this)">🗑️</button>
+                            <button class="remove-btn" title="Mark as bought" onclick="toggleBought(this)">✅</button>
+                            <button class="remove-btn" title="Edit" onclick="editItem(this)">✏️</button>
+                        </span>`;
+                    if (item.bought) li.classList.add('bought');
+                    list.appendChild(li);
+                }
+                updateCount();
+                saveList();
+            } catch {
+                alert("Invalid data!");
+            }
+        }
+
+        // Save/load to localStorage
+        function saveList() {
+            const items = [];
+            list.querySelectorAll('li').forEach(li => {
+                const emoji = li.querySelector('.item-emoji').textContent;
+                const text = li.querySelector('.item-text').textContent;
+                const bought = li.classList.contains('bought');
+                items.push({emoji, text, bought});
+            });
+            localStorage.setItem('shoppingList', JSON.stringify(items));
+        }
+        function loadList() {
+            const data = localStorage.getItem('shoppingList');
+            if (!data) return;
+            try {
+                const items = JSON.parse(data);
+                for (const item of items) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span class="item-emoji">${item.emoji || "🛍️"}</span> <span class="item-text">${item.text || ""}</span>
+                        <span>
+                            <button class="remove-btn" title="Remove" onclick="removeItem(this)">🗑️</button>
+                            <button class="remove-btn" title="Mark as bought" onclick="toggleBought(this)">✅</button>
+                            <button class="remove-btn" title="Edit" onclick="editItem(this)">✏️</button>
+                        </span>`;
+                    if (item.bought) li.classList.add('bought');
+                    list.appendChild(li);
+                }
+                updateCount();
+            } catch {}
+        }
+
+        // Add item on Enter key
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') addItem();
+        });
+
+        // Mark bought style
+        const style = document.createElement('style');
+        style.textContent = `
+            li.bought .item-text {
+                text-decoration: line-through;
+                color: #00ffe7aa;
+                opacity: 0.7;     
+            }
+            li.bought {
+                background: rgba(0,255,231,0.18);  text-decoratwion: line-through;            
+            }
+        `;
+        document.head.appendChild(style);
+
+        // On load
+        loadList();
+    </script>
+</body>
+</html>
