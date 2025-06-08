@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Random Color Changer</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(120deg, #0f2027 0%, #2c5364 100%);
+            transition: background 0.8s cubic-bezier(.4,2,.6,1);
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(20, 20, 30, 0.72);
+            border-radius: 32px;
+            box-shadow: 0 8px 40px 0 #00ffe7cc, 0 0 0 12px rgba(0,255,231,0.10), 0 0 80px #00ffe744;
+            padding: 3em 2.5em;
+            text-align: center;
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 2.5px solid rgba(0,255,231,0.25);
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            color: #fff;
+            letter-spacing: 3px;
+            font-size: 2.5em;
+            margin-bottom: 1.5em;
+            text-shadow: 0 2px 32px #00ffe7, 0 0 16px #007cf0, 0 0 40px #fff;
+            font-weight: 700;
+        }
+        #colorCode {
+            display: inline-block;
+            margin: 1.5em 0 1em 0;
+            font-size: 2em;
+            color: #00ffe7;
+            font-family: 'Fira Mono', monospace;
+            letter-spacing: 2px;
+            text-shadow: 0 1px 12px #00ffe7, 0 0 8px #007cf0;
+            padding: 0.5em 1.5em;
+            border-radius: 16px;
+            border: 2.5px solid rgba(0,255,231,0.45);
+            background: rgba(0,255,231,0.18);
+            box-shadow: 0 0 32px #00ffe7cc, 0 0 12px #007cf0;
+            transition: color 0.5s, background 0.5s, border 0.5s, box-shadow 0.5s, text-shadow 0.5s;
+            user-select: all;
+        }
+        button {
+            background: linear-gradient(90deg, #00ffe7 0%, #007cf0 100%, #00ffe7 200%);
+            color: #232526;
+            border: none;
+            border-radius: 18px;
+            padding: 1.2em 3.5em;
+            font-size: 1.35em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 32px #00ffe799, 0 0 32px #007cf0cc, 0 0 0 8px #00ffe722;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.4s;
+            outline: none;
+            margin-top: 1.5em;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            letter-spacing: 2px;
+        }
+        button:focus-visible {
+            outline: 3px solid #00ffe7;
+            outline-offset: 3px;
+        }
+        button::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, #00ffe7 0%, transparent 80%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);
+            z-index: -1;
+        }
+        button:active::before {
+            width: 300%;
+            height: 300%;
+        }
+        button:hover {
+            transform: scale(1.09) rotate(-1deg);
+            box-shadow: 0 4px 36px #00ffe7cc, 0 0 32px #007cf0cc;
+            background: linear-gradient(90deg, #007cf0 0%, #00ffe7 100%, #007cf0 200%);
+            filter: brightness(1.15) drop-shadow(0 0 16px #00ffe7cc);
+        }
+        /* Animated Glow */
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1200px;
+            height: 1200px;
+            background: radial-gradient(circle, #00ffe7 0%, #007cf0 40%, transparent 80%);
+            opacity: 0.28;
+            filter: blur(60px);
+            transform: translate(-50%, -50%) scale(1.2);
+            z-index: 0;
+            animation: glowMove 8s cubic-bezier(.4,2,.6,1) infinite alternate, glowPulse 3s ease-in-out infinite alternate;
+        }
+        @keyframes glowMove {
+            0% { transform: translate(-50%, -50%) scale(1.2);}
+            100% { transform: translate(-48%, -52%) scale(1.5);}
+        }
+        @keyframes glowPulse {
+            0% { opacity: 0.28; filter: blur(60px);}
+            100% { opacity: 0.38; filter: blur(90px);}
+        }
+        /* Finer animated floating particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.16;
+            pointer-events: none;
+            background: radial-gradient(circle, #00ffe7 0%, #007cf0 80%, transparent 100%);
+            filter: blur(2.5px) brightness(1.2);
+            animation: float 14s linear infinite, particleTwinkle 2.5s ease-in-out infinite alternate;
+            will-change: transform, opacity;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1) rotate(0deg);}
+            100% { transform: translateY(-120vh) scale(1.25) rotate(360deg);}
+        }
+        @keyframes particleTwinkle {
+            0% { opacity: 0.16; filter: blur(2.5px) brightness(1.2);}
+            100% { opacity: 0.32; filter: blur(4px) brightness(1.5);}
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5em 0.7em;
+            }
+            #colorCode {
+                font-size: 1.2em;
+            }
+            h1 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+    <!-- Add floating particles for extra futuristic effect -->
+    <script>
+        // Remove old particles if any
+        document.querySelectorAll('.particle').forEach(p => p.remove());
+        // Finer, more dynamic particles
+        for(let i=0;i<28;i++){
+            const p=document.createElement('div');
+            p.className='particle';
+            const size=(Math.random()*14+6);
+            p.style.width=p.style.height=size+'px';
+            p.style.left=(Math.random()*100)+'vw';
+            p.style.bottom=(-Math.random()*40)+'vh';
+            p.style.animationDelay=(Math.random()*14)+'s';
+            p.style.animationDuration=(12+Math.random()*8)+'s, '+(2+Math.random()*2)+'s';
+            p.style.opacity = (0.12 + Math.random()*0.18).toFixed(2);
+            document.body.appendChild(p);
+        }
+    </script>
+    <div class="container">
+        <h1>Random Color Changer</h1>
+        <span id="colorCode">#232526</span>
+        <br>
+        <button onclick="changeColor()">Change Color</button>
+    </div>
+    <script>
+        function getRandomColor() {
+            const hex = Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0');
+            return `#${hex}`;
+        }
+        function changeColor() {
+            const color = getRandomColor();
+            document.body.style.background = `linear-gradient(120deg, ${color} 0%, #2c5364 100%)`;
+            const code = document.getElementById('colorCode');
+            code.textContent = color;
+            code.style.color = color;
+            code.style.background = 'rgba(0,0,0,0.22)';
+            code.style.border = `2.5px solid ${color}`;
+            code.style.boxShadow = `0 0 40px ${color}cc, 0 0 16px #007cf0`;
+            code.style.textShadow = `0 1px 24px ${color}, 0 0 12px #007cf0`;
+            // Animate particles on color change
+            document.querySelectorAll('.particle').forEach(p => {
+                p.style.filter = `blur(2.5px) brightness(1.7) drop-shadow(0 0 8px ${color})`;
+                setTimeout(() => {
+                    p.style.filter = '';
+                }, 600);
+            });
+        }
+    </script>
+</body>
+</html>
