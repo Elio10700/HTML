@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modern Calendar</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calendar-container {
+            background: rgba(30, 30, 40, 0.85);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 0 40px #00ffe7cc;
+            padding: 2.5em 2em 2em 2em;
+            min-width: 350px;
+            max-width: 96vw;
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1.5px solid rgba(0,255,231,0.18);
+            position: relative;
+            animation: fadeInCalendar 1s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes fadeInCalendar {
+           
+            justify-content: space-between;
+            margin-bottom: 1.5em;
+        }
+        .calendar-header button {
+            background: linear-gradient(90deg, #00ffe7 0%, #007cf0 100%);
+            color: #232526;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5em 1.2em;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #00ffe744;
+            transition: transform 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        .calendar-header button:hover {
+            transform: scale(1.07);
+            box-shadow: 0 4px 24px #00ffe799;
+        }
+        .calendar-title {
+            color: #00ffe7;
+            font-size: 1.5em;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 12px #00ffe7, 0 0 8px #007cf0;
+        }
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .calendar-table th, .calendar-table td {
+            width: 14.28%;
+            height: 2.7em;
+            text-align: center;
+            font-size: 1.1em;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .calendar-table th {
+            color: #00ffe7;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding-bottom: 0.5em;
+        }
+        .calendar-table td {
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+        .calendar-table td.today {
+            background: linear-gradient(90deg, #00ffe7 0%, #007cf0 100%);
+            color: #232526;
+            font-weight: bold;
+            box-shadow: 0 0 12px #00ffe7cc;
+        }
+        .calendar-table td:hover:not(.today):not(.empty) {
+            background: rgba(0,255,231,0.13);
+            color: #00ffe7;
+        }
+        .calendar-table td.empty {
+            background: transparent;
+            cursor: default;
+        }
+        @media (max-width: 500px) {
+            .calendar-container {
+                padding: 1em 0.3em 1em 0.3em;
+                min-width: 0;
+            }
+            .calendar-title {
+                font-size: 1.1em;
+            }
+            .calendar-table th, .calendar-table td {
+                font-size: 0.9em;
+                height: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button id="prevMonth">&lt;</button>
+            <span class="calendar-title" id="monthYear"></span>
+            <button id="nextMonth">&gt;</button>
+        </div>
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+            </thead>
+            <tbody id="calendarBody">
+                <!-- Calendar days will be injected here -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const monthYear = document.getElementById('monthYear');
+        const calendarBody = document.getElementById('calendarBody');
+        const prevMonthBtn = document.getElementById('prevMonth');
+        const nextMonthBtn = document.getElementById('nextMonth');
+
+        let today = new Date();
+        let currentMonth = today.getMonth();
+        let currentYear = today.getFullYear();
+
+        function renderCalendar(month, year) {
+            monthYear.textContent = `${today.toLocaleString('default', { month: 'long' })} ${year}`;
+            // ...but use the selected month/year for display:
+            const displayDate = new Date(year, month);
+            monthYear.textContent = `${displayDate.toLocaleString('default', { month: 'long' })} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            let html = '';
+            let date = 1;
+            for (let i = 0; i < 6; i++) {
+                html += '<tr>';
+                for (let j = 0; j < 7; j++) {
+                    if (i === 0 && j < firstDay) {
+                        html += '<td class="empty"></td>';
+                    } else if (date > daysInMonth) {
+                        html += '<td class="empty"></td>';
+                    } else {
+                        const isToday =
+                            date === today.getDate() &&
+                            month === today.getMonth() &&
+                            year === today.getFullYear();
+                        html += `<td class="${isToday ? 'today' : ''}">${date}</td>`;
+                        date++;
+                    }
+                }
+                html += '</tr>';
+                if (date > daysInMonth) break;
+            }
+            calendarBody.innerHTML = html;
+        }
+
+        prevMonthBtn.onclick = function() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar(currentMonth, currentYear);
+        };
+        nextMonthBtn.onclick = function() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar(currentMonth, currentYear);
+        };
+
+        renderCalendar(currentMonth, currentYear);
+    </script>
+</body>
+</html>
