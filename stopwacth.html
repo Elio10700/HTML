@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stopwatch</title>
+</head>
+<body>
+    <div>
+        <button id="toggleBtn" title="Start/Stop">🕒</button>
+    </div>
+    <div>
+        Stop<br>watch
+    </div>
+    <div id="display">
+        <span id="appendseconds">00</span>:<span id="appendmilliseconds">00</span>
+    </div>
+    <div>
+        <button id="buttonstart">Start</button>
+        <button id="buttonstop">Stop</button>
+    </div>
+    <script>
+        let milliseconds = 0, seconds = 0, interval, running = false;
+        const appendmilliseconds = document.getElementById("appendmilliseconds");
+        const appendseconds = document.getElementById("appendseconds");
+        const toggleBtn = document.getElementById("toggleBtn");
+        const buttonstart = document.getElementById("buttonstart");
+        const buttonstop = document.getElementById("buttonstop");
+        const stopwatchBox = document.getElementById("toggleBtn").parentNode;
+
+        function starttimer() {
+            milliseconds++;
+            if (milliseconds < 10) {
+                appendmilliseconds.innerHTML = "0" + milliseconds;
+            } else {
+                appendmilliseconds.innerHTML = milliseconds;
+            }
+            if (milliseconds > 99) {
+                seconds++;
+                appendseconds.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+                milliseconds = 0;
+                appendmilliseconds.innerHTML = "00";
+            }
+        }
+
+        function start() {
+            if (!running) {
+                interval = setInterval(starttimer, 10);
+                running = true;
+            }
+        }
+
+        function stop() {
+            clearInterval(interval);
+            running = false;
+        }
+
+        function reset() {
+            stop();
+            milliseconds = 0;
+            seconds = 0;
+            appendmilliseconds.innerHTML = "00";
+            appendseconds.innerHTML = "00";
+        }
+
+        // Toggle start/stop on icon or box click
+        toggleBtn.onclick = stopwatchBox.onclick = function(e) {
+            // Prevent double trigger if button is clicked
+            if (e.target === buttonstart || e.target === buttonstop) return;
+            if (running) {
+                stop();
+            } else {
+                start();
+            }
+        };
+
+        buttonstart.onclick = function() {
+            if (!running) {
+                start();
+            }
+        };
+
+        buttonstop.onclick = function() {
+            if (running) {
+                stop();
+            }
+        };
+    </script>
+</body>
+</html>
