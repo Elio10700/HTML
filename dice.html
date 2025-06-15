@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dice Roller</title>
+</head>
+<style>
+    body { 
+        background-color: aqua;
+        text-align: center;
+    }
+    #dice {
+        font-size: 100px;
+        margin-top: 20%;
+        color: brown
+    }
+    #dice:hover{
+        color: red;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div id="dice"></div>
+    <button onclick="startstop()">Start/Stop</button>
+    <script>
+            var diceface = [ "&#9856;",  "&#9857;",  "&#9858;",  "&#9859;",  "&#9860;",  "&#9861;"];
+            var start = true;
+            var t;
+            function change() {
+                var d = Math.floor(Math.random()*6) 
+                document.getElementById("dice").innerHTML = diceface[d];
+            }
+            function startstop() {
+                if (start) {
+                    t = setInterval(change, 500);
+                    start = false;
+                } else {
+                    clearInterval(t);
+                    start = true;
+                }
+            }
+            window.onload = () => {
+                startstop();
+            }
+    </script>
+</body>
+</html>
+
