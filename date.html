@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>calender</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        #dateDisplay {
+            background: #fff;
+            padding: 2em 3em;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            font-size: 1.3em;
+            color: #333;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="dateDisplay"></div>
+    <script>
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1; 
+        const day = now.getDate();
+        document.getElementById('dateDisplay').textContent =
+            `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}
+Year: ${year}
+Month: ${month.toString().padStart(2, '0')}`;
+    </script>
+</body>
+</html>
