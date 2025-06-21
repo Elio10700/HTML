@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fine Dine Restaurant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #f8f8f8 0%, #f1f1f1 100%);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(35,37,38,0.85);
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1.5px solid rgba(255,255,255,0.08);
+            padding: 0 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ffcc33;
+            letter-spacing: 2px;
+            font-family: 'Pacifico', cursive, sans-serif;
+            text-shadow: 0 2px 8px rgba(255,204,51,0.15);
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar li {
+            margin: 0 25px;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.15em;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 12px 0;
+            position: relative;
+            transition: color 0.3s, letter-spacing 0.3s;
+        }
+        .navbar a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffb347, #ffcc33);
+            border-radius: 2px;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .navbar a:hover {
+            color: #ffcc33;
+            letter-spacing: 2px;
+        }
+        .navbar a:hover::after {
+            width: 100%;
+        }
+        .hero {
+            text-align: center;
+            padding: 90px 20px 60px 20px;
+            background: linear-gradient(120deg, #fffbe6 0%, #ffe5ec 100%);
+            border-radius: 0 0 40px 40px;
+            box-shadow: 0 8px 32px 0 rgba(255,204,51,0.07);
+        }
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 10px;
+            color: #232526;
+            letter-spacing: 2px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            color: #555;
+            margin-bottom: 0;
+        }
+        .section {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.85);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px 0 rgba(31,38,135,0.07);
+            padding: 40px 30px 30px 30px;
+        }
+        .section h2 {
+            font-size: 2em;
+            color: #ffb347;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+        .menu-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .menu-item {
+            background: #fffbe6;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px 0 rgba(255,204,51,0.08);
+            padding: 18px 28px;
+            min-width: 180px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .menu-item:hover {
+            transform: translateY(-6px) scale(1.04);
+            box-shadow: 0 8px 24px 0 rgba(255,204,51,0.18);
+        }
+        .menu-item h3 {
+            margin: 0 0 8px 0;
+            color: #232526;
+            font-size: 1.15em;
+        }
+        .menu-item p {
+            margin: 0;
+            color: #555;
+            font-size: 1em;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px 0 rgba(255,204,51,0.10);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 8px 24px 0 rgba(255,204,51,0.18);
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ffcc33;
+            font-size: 1em;
+            background: #fffbe6;
+            resize: none;
+        }
+        .contact-form button {
+            background: linear-gradient(90deg, #ffb347, #ffcc33);
+            color: #232526;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .contact-form button:hover {
+            background: linear-gradient(90deg, #ffcc33, #ffb347);
+        }
+        @media (max-width: 800px) {
+            .section {
+                padding: 30px 10px 20px 10px;
+            }
+            .menu-list {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                padding: 0 10px;
+            }
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .navbar li {
+                margin: 10px 0;
+            }
+            .hero h1 {
+                font-size: 2em;
+            }
+            .section {
+                margin: 20px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <span class="logo">🍽️ FineDine</span>
+        <ul>
+            <li><a href="#home">🏠 Home</a></li>
+            <li><a href="#menu">🍝 Menu</a></li>
+            <li><a href="#gallery">🍰 Food Gallery</a></li>
+            <li><a href="#contact">📞 Contact</a></li>
+        </ul>
+    </nav>
+    <section class="hero" id="home">
+        <h1>🍽️ Fine Dine Restaurant</h1>
+        <p>Experience the taste of luxury and modern cuisine in a cozy atmosphere.</p>
+    </section>
+    <section class="section" id="menu">
+        <h2>🍝 Menu</h2>
+        <div class="menu-list">
+            <div class="menu-item">
+                <h3>Truffle Pasta 🍄</h3>
+                <p>Creamy pasta with black truffle and parmesan.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Seared Salmon 🐟</h3>
+                <p>Fresh salmon fillet with lemon butter sauce.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Classic Caesar Salad 🥗</h3>
+                <p>Crisp romaine, parmesan, and house-made dressing.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Molten Lava Cake 🍫</h3>
+                <p>Rich chocolate cake with a gooey center.</p>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="gallery">
+        <h2>🍰 Food Gallery</h2>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Dish 1">
+            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=400&q=80" alt="Dish 2">
+            <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80" alt="Dish 3">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=400&q=80" alt="Dish 4">
+        </div>
+    </section>
+    <section class="section" id="contact">
+        <h2>📞 Contact</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+</body>
+</html>
