@@ -6,12 +6,12 @@
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
         #count { 
-            font-size: 6em; 
+            font-size: 6em;    
             margin: 40px; 
             font-weight: bold;
             color: #222;
             background: none;
-            -webkit-background-clip: unset;
+            -webkit-background-clip: unset;   
             -webkit-text-fill-color: unset;
             background-clip: unset;
             transition: color 0.5s;
@@ -21,6 +21,7 @@
 </head>
 <body>
     <h1>Counter App</h1>
+    <p>Click the buttons to change the count:</p>
     <div id="count"><span id="count-number">0</span></div>
     <button onclick="decrement()">-</button>
     <button onclick="increment()">+</button>
@@ -29,11 +30,10 @@
         let count = 0;
         const countDiv = document.getElementById('count');
         const countNumber = document.getElementById('count-number');
-
+   
         function getColor(count) {
-            // Map count to a color using HSL
             const hue = (count * 30) % 360;
-            return `hsl(${hue}, 80%, 50%)`;
+            return `hsl(${hue}, 80%, 50%)`;   
         }
 
         function updateDisplay() {
@@ -41,17 +41,15 @@
             countDiv.style.color = getColor(count);
         }
 
-        function increment() {
-            count++;
+        function increment() {   
+            count++; 
             updateDisplay();
-        }
+        }   
 
         function decrement() {
             count--;
             updateDisplay();
         }
-
-        // Initialize with correct gradient
         updateDisplay();
     </script>
 </body>
