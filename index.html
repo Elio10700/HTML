@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>capstone project</title>
+        <style>
+            body{
+                margin: 0;
+                 background-color: lightgrey;
+                font-family: Arial, sans-serif;
+            }
+            .topnav {
+                overflow: hidden;
+                background-color:grey;
+            }
+            .topnav a {
+                float: right;
+                color: black;
+                font-size: 21px;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            .topnav a:hover {
+                color: whitesmoke;
+                font-size: 24px;
+            }
+            .topnav a.active {
+               color: aquamarine;
+            }
+            /* Carousel styles */
+            .carousel-container {
+                width: 600px;
+                max-width: 90vw;
+                height: 350px;
+                margin: 30px auto 0 auto;
+                position: relative;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .carousel-container img.myslides {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: none;
+                border-radius: 10px;
+            }
+            h1 {
+                text-align: center;
+                margin-top: 30px;
+                color: #333;
+                letter-spacing: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="topnav">
+            <a class="active" href="index.html">Home</a>
+            <a href="content.html">Content</a>
+            <a href="gallery.html">gallery</a>
+            <a href="contact.html">contact</a>
+        </div>
+        <h1>my favourite place</h1>
+       <div class="carousel-container">
+            <img class="myslides" src="images1.jpeg">
+            <img class="myslides" src="ChatGPT Image Jun 21, 2025, 07_42_49 PM - Copy (2).png">
+            <img class="myslides" src="2.jpeg">
+             <img class="myslides" src="3.jpeg">
+        </div>
+      <script>
+        var myindex = 0;
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("myslides");
+            for (i = 0; i < x.length; i++){
+                x[i].style.display = "none";  
+            }
+            myindex++;
+            if (myindex > x.length) {
+                myindex = 1}    
+            x[myindex-1].style.display = "block";  
+            setTimeout(carousel, 3000); 
+        }
+        carousel();
+      </script>
+    </body>
+</html>
