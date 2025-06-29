@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Class Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary: #0057b8;
+            --accent: #00c6fb;
+            --bg: #f7fafd;
+            --text: #222;
+            --white: #fff;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: relative;
+            animation: fadeInDown 1s cubic-bezier(.77,0,.18,1) 0.2s both;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        nav {
+            margin: 1.5rem 0 0.5rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            animation: fadeIn 1.2s cubic-bezier(.77,0,.18,1) 0.5s both;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0;}
+            to { opacity: 1;}
+        }
+        nav a {
+            color: var(--white);
+            background: rgba(0,0,0,0.08);
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s, left 0.3s;
+        }
+        nav a:hover, nav a:focus {
+            background: var(--accent);
+            color: var(--white);
+            transform: translateY(-3px) scale(1.05);
+        }
+        nav a:hover::after, nav a:focus::after {
+            width: 80%;
+            left: 10%;
+        }
+        .hero {
+            max-width: 900px;
+            margin: 3rem auto 2rem auto;
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,87,184,0.08);
+            padding: 3rem 2rem 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: heroPop 1.3s cubic-bezier(.77,0,.18,1) 0.7s both;
+        }
+        @keyframes heroPop {
+            from { opacity: 0; transform: scale(0.95);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: #444;
+            margin-bottom: 2rem;
+        }
+        .cta-btn {
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,87,184,0.10);
+            transition: background 0.3s, transform 0.2s;
+            animation: fadeIn 1.2s cubic-bezier(.77,0,.18,1) 1.2s both;
+        }
+        .cta-btn:hover {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scale(1.07);
+        }
+        .animated-bg {
+            position: absolute;
+            top: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 80%);
+            z-index: 0;
+            animation: floatBg 7s ease-in-out infinite alternate;
+        }
+        @keyframes floatBg {
+            from { transform: translateY(0);}
+            to { transform: translateY(40px);}
+        }
+        footer {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: var(--white);
+            text-align: center;
+            padding: 1.2rem 0;
+            font-size: 1rem;
+            margin-top: 3rem;
+            letter-spacing: 0.5px;
+            animation: fadeInUp 1s cubic-bezier(.77,0,.18,1) 1.5s both;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 600px) {
+            .hero {
+                padding: 2rem 1rem 1.5rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>First Class Website</h1>
+        <nav>
+            <a href="add more pages to your website .html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="animated-bg"></div>
+        <h1>Welcome to the Most Stunning Website</h1>
+        <p>Experience a first class website with beautiful design, smooth animations, and a modern user experience. Better than any you've seen before!</p>
+        <button class="cta-btn" onclick="window.location.href='about.html'">Learn More</button>
+    </section>
+    <footer>
+        &copy; 2024 First Class Website. All rights reserved.
+    </footer>
+</body>
+</html>
