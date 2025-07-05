@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery Example</title>
+    <style>
+        body {
+            background-color: #e6faff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .topnav {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #f44336;
+            padding: 0 0 0 30px;
+            height: 60px;
+        }
+
+        .topnav a {
+            color: #222;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 30px;
+            transition: color 0.2s;
+        }
+
+        .topnav a:last-child {
+            color: orange;
+            margin-right: 0;
+        }
+
+        .gallery-frame {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .gallery-inner {
+            background: #111;
+            padding: 16px 18px 16px 18px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .gallery-inner img {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 2px solid #fff;
+            background: #fff;
+        }
+
+        #imgModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #imgModal img {
+            max-width: 100vw;
+            max-height: 100vh;
+            border-radius: 10px;
+            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        #imgModal span {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            font-size: 3em;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="#">contact</a>
+        <a href="#">Gallery</a>
+        <a href="#">Content</a>
+        <a href="#">Home</a>
+    </div>
+    <div class="gallery-frame">
+        <div class="gallery-inner">
+            <img src="image gpt.png" alt="pic1" onclick="showModal('image gpt.png')">
+            <img src="download5.jpeg" alt="pic2" onclick="showModal('download5.jpeg')">
+            <img src="9.jpeg" alt="pic3" onclick="showModal('9.jpeg')">
+        </div>
+    </div>
+    <div id="imgModal">
+        <span onclick="closeModal()">&times;</span>
+        <img id="modalImg" src="" alt="Full Image">
+    </div>
+    <script>
+        function showModal(src) {
+            document.getElementById('modalImg').src = src;
+            document.getElementById('imgModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('imgModal').style.display = 'none';
+            document.getElementById('modalImg').src = '';
+        }
+        document.getElementById('imgModal').onclick = function (e) {
+            if (e.target === this) closeModal();
+        }
+    </script>
+</body>
+
+</html>
