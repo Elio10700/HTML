@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css"/>
+        <title>Food</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            /* Modern, elegant, and visually appealing enhancements */
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500&display=swap');
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                max-width: 900px;
+                margin: 40px auto;
+                background: linear-gradient(135deg, #fff8f0 60%, #ffe0b2 100%);
+                border-radius: 18px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+                padding: 40px 32px;
+                font-family: 'Roboto', Arial, sans-serif;
+                transition: background 0.5s;
+            }
+            h1, h2 {
+                font-family: 'Montserrat', Arial, sans-serif;
+                color: #ff9800;
+                margin-top: 36px;
+                letter-spacing: 1px;
+                text-shadow: 0 2px 8px rgba(255,152,0,0.08);
+            }
+            .section-dark {
+                border-radius: 12px;
+                background: linear-gradient(120deg, #e3f2fd 80%, #bbdefb 100%);
+                padding: 36px 28px;
+                margin-bottom: 36px;
+                box-shadow: 0 4px 16px rgba(33,150,243,0.07);
+                border-left: 6px solid #2196f3;
+            }
+            img {
+                border-radius: 12px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            img:hover {
+                transform: scale(1.04) rotate(-1deg);
+                box-shadow: 0 8px 32px rgba(255,152,0,0.18);
+            }
+            p {
+                font-family: 'Roboto', Arial, sans-serif;
+                line-height: 1.8;
+                color: #222;
+                margin-bottom: 28px;
+                font-size: 1.08em;
+            }
+            .welcome {
+                display: block;
+                font-size: 2em;
+                font-weight: 700;
+                color: #ff9800;
+                margin-bottom: 32px;
+                text-align: center;
+                font-family: 'Montserrat', Arial, sans-serif;
+                letter-spacing: 1px;
+                text-shadow: 0 2px 8px rgba(255,152,0,0.10);
+                background: linear-gradient(90deg, #fff3e0 70%, #ffe0b2 100%);
+                border-radius: 8px;
+                padding: 18px 0;
+            }
+            .food-section {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 32px;
+                align-items: flex-start;
+            }
+            .food-img {
+                flex: 0 0 350px;
+                max-width: 350px;
+                margin-right: 32px;
+            }
+            .food-desc {
+                flex: 1 1 300px;
+                min-width: 220px;
+            }
+            @media (max-width: 900px) {
+                body { padding: 16px 4vw; }
+                .food-section { flex-direction: column; gap: 12px; }
+                .food-img { margin: 0 auto 18px auto; }
+            }
+        </style>
+    </head>
+    <body>
+        <span class="welcome">
+            I welcome you all to this website
+        </span>
+        <section class="section-dark">
+            <h2>Food</h2>
+            <p>Food is any substance consumed to provide nutritional support for an organism.<br>
+            Food is usually of plant, animal or fungal origin, and contains essential nutrients, such as carbohydrates, fats, proteins, vitamins, or minerals.
+            </p>
+        </section>
+        <h1>Pizza</h1>
+        <div class="food-section">
+            <img class="food-img" src="pizza.jpg" alt="Pizza" style="height:150px;border:1px solid #b85c00;">
+            <div class="food-desc">
+                <p>
+                Pizza (Italian: [ˈpittsa], Neapolitan: [ˈpittsə]) is a savory dish of Italian origin consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes, cheese, and often various other ingredients (such as anchovies, mushrooms, onions, olives, pineapple, meat, etc.), which is then baked at a high temperature, traditionally in a wood-fired oven.<br>
+                The word "pizza" comes from "pizzaiolo", a job and later a restaurant in the city of Naples, Italy, where it was first made. The word is of uncertain origin, but it is thought to be related to the Italian word "pizza" meaning "to slice".<br>
+                The modern pizza was invented in Naples, Italy, in the 18th or early 19th century. It is widely regarded as one of the most popular dishes in the world, with many variations and styles, including Neapolitan, New York-style, Chicago-style, and many others.<br>
+                Pizza is typically served hot and can be eaten as a main course or as a snack. It is often accompanied by a variety of condiments, such as chili flakes, oregano, and garlic oil. Pizza is also commonly served with a side of salad or breadsticks.<br>
+                Pizza is a popular food in many other countries, including the United States, where it is the most popular dish in the world. It is often served in pizzerias, restaurants, and homes, and is commonly eaten as a snack or main course.<br>
+                Pizza is often served with a variety of toppings, including cheese, vegetables. A small pizza is sometimes called a pizzetta. A person who makes pizza is known as a pizzaiolo.
+                </p>
+            </div>
+        </div>
+        <h1>Pastries</h1>
+        <div class="food-section">
+            <img class="food-img" src="pastries.jpg" alt="Pastries" style="height:150px;border:1px solid #b85c00;">
+            <div class="food-desc">
+                <p>
+                Pastry is a dough of flour, water and shortening that may be savory or sweetened and is used as a base or covering for various dishes, such as pies, tarts, quiches, and pastries.<br>
+                Pastry is typically made from a mixture of flour, water, and fat, which is rolled and shaped into a flat disk or rectangle, and then baked in an oven.<br>
+                Pastry is a popular food in many countries, including the United States, where it is the most popular dish in the world. It is often served in pizzerias, restaurants, and homes, and is commonly eaten as a snack or main course.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
