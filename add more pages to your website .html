@@ -78,26 +78,67 @@
         .hero {
             max-width: 900px;
             margin: 3rem auto 2rem auto;
-            background: var(--white);
+            background: rgba(255,255,255,0.7);
             border-radius: 18px;
-            box-shadow: 0 8px 32px rgba(0,87,184,0.08);
-            padding: 3rem 2rem 2.5rem 2rem;
-            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,87,184,0.08), 0 0 0 4px rgba(0,198,251,0.15);
+            border: 3px solid rgba(0,198,251,0.18);
+            background-clip: padding-box;
             position: relative;
             overflow: hidden;
             animation: heroPop 1.3s cubic-bezier(.77,0,.18,1) 0.7s both;
+            backdrop-filter: blur(12px) saturate(160%);
         }
         @keyframes heroPop {
             from { opacity: 0; transform: scale(0.95);}
             to { opacity: 1; transform: scale(1);}
         }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            padding: 4px;
+            background: conic-gradient(from 90deg, var(--primary), var(--accent), var(--primary));
+            z-index: 1;
+            filter: blur(8px);
+            opacity: 0.7;
+            pointer-events: none;
+            animation: borderGlow 4s linear infinite;
+        }
+        @keyframes borderGlow {
+            0% { filter: blur(8px) brightness(1);}
+            50% { filter: blur(12px) brightness(1.2);}
+            100% { filter: blur(8px) brightness(1);}
+        }
+        .floating-svg {
+            position: absolute;
+            right: -60px;
+            top: 40px;
+            width: 120px;
+            height: 120px;
+            z-index: 2;
+            opacity: 0.25;
+            pointer-events: none;
+            animation: floatSvg 6s ease-in-out infinite alternate;
+        }
+        @keyframes floatSvg {
+            from { transform: translateY(0);}
+            to { transform: translateY(-30px);}
+        }
         .hero h1 {
             font-size: 2.8rem;
             margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(270deg, var(--primary), var(--accent), #ff6ec4, var(--primary));
+            background-size: 800% 800%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: gradientText 8s ease-in-out infinite;
+        }
+        @keyframes gradientText {
+            0% {background-position:0% 50%;}
+            50% {background-position:100% 50%;}
+            100% {background-position:0% 50%;}
         }
         .hero p {
             font-size: 1.3rem;
@@ -116,10 +157,26 @@
             box-shadow: 0 4px 16px rgba(0,87,184,0.10);
             transition: background 0.3s, transform 0.2s;
             animation: fadeIn 1.2s cubic-bezier(.77,0,.18,1) 1.2s both;
+            position: relative;
+            overflow: hidden;
         }
         .cta-btn:hover {
             background: linear-gradient(90deg, var(--primary), var(--accent));
             transform: scale(1.07);
+        }
+        .cta-btn .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            background: rgba(0,198,251,0.4);
+            pointer-events: none;
+        }
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
         .animated-bg {
             position: absolute;
@@ -135,19 +192,65 @@
             from { transform: translateY(0);}
             to { transform: translateY(40px);}
         }
-        footer {
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            color: var(--white);
-            text-align: center;
-            padding: 1.2rem 0;
-            font-size: 1rem;
-            margin-top: 3rem;
-            letter-spacing: 0.5px;
-            animation: fadeInUp 1s cubic-bezier(.77,0,.18,1) 1.5s both;
+        .testimonial {
+            max-width: 400px;
+            margin: 2rem auto 0 auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(0,87,184,0.10);
+            padding: 1.5rem 2rem;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInTestimonial 1.2s cubic-bezier(.77,0,.18,1) 2.2s both;
         }
-        @keyframes fadeInUp {
+        @keyframes fadeInTestimonial {
             from { opacity: 0; transform: translateY(40px);}
             to { opacity: 1; transform: translateY(0);}
+        }
+        .testimonial::before {
+            content: "“";
+            font-size: 3rem;
+            color: var(--accent);
+            position: absolute;
+            top: 0.2rem; left: 1rem;
+            opacity: 0.2;
+        }
+        .testimonial p {
+            font-size: 1.1rem;
+            color: #333;
+            margin: 0 0 1rem 0;
+        }
+        .testimonial .author {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+        /* Floating particles background */
+        .particles-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.18;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            animation: floatParticle 12s linear infinite;
+        }
+        .particle.p1 { width: 40px; height: 40px; left: 10%; top: 20%; animation-delay: 0s;}
+        .particle.p2 { width: 30px; height: 30px; left: 70%; top: 10%; animation-delay: 2s;}
+        .particle.p3 { width: 25px; height: 25px; left: 50%; top: 60%; animation-delay: 4s;}
+        .particle.p4 { width: 50px; height: 50px; left: 80%; top: 80%; animation-delay: 1s;}
+        .particle.p5 { width: 20px; height: 20px; left: 30%; top: 75%; animation-delay: 3s;}
+        @keyframes floatParticle {
+            0% { transform: translateY(0) scale(1);}
+            50% { transform: translateY(-40px) scale(1.2);}
+            100% { transform: translateY(0) scale(1);}
         }
         @media (max-width: 600px) {
             .hero {
@@ -168,14 +271,45 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
-    <section class="hero">
+    <section class="hero" style="position:relative; overflow:hidden;">
+        <div class="particles-bg">
+            <div class="particle p1"></div>
+            <div class="particle p2"></div>
+            <div class="particle p3"></div>
+            <div class="particle p4"></div>
+            <div class="particle p5"></div>
+        </div>
         <div class="animated-bg"></div>
+        <svg class="floating-svg" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#00c6fb" stroke-width="8" stroke-dasharray="10 10"/>
+        </svg>
         <h1>Welcome to the Most Stunning Website</h1>
         <p>Experience a first class website with beautiful design, smooth animations, and a modern user experience. Better than any you've seen before!</p>
-        <button class="cta-btn" onclick="window.location.href='about.html'">Learn More</button>
+        <button class="cta-btn" onclick="window.location.href='https://www.wikipedia.org'">
+            Learn More
+        </button>
     </section>
+    <div class="testimonial">
+        <p>This website is absolutely amazing! The animations and design are truly first class.</p>
+        <div class="author">– Happy Visitor</div>
+    </div>
     <footer>
         &copy; 2024 First Class Website. All rights reserved.
     </footer>
+    <script>
+        // Make every button navigate to its destination or to Wikipedia if none
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // If button has an onclick with window.location.href, let it work
+                if (btn.hasAttribute('onclick')) return;
+                // If button has a data-href attribute, use it
+                if (btn.dataset.href) {
+                    window.location.href = btn.dataset.href;
+                } else {
+                    window.location.href = 'https://www.wikipedia.org';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
